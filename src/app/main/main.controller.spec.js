@@ -7,8 +7,8 @@
     var toastr;
 
     beforeEach(module('dh2321InformationVisualization'));
-    beforeEach(inject(function(_$controller_, _$timeout_, _webDevTec_, _toastr_) {
-      spyOn(_webDevTec_, 'getTec').and.returnValue([{}, {}, {}, {}, {}]);
+    beforeEach(inject(function(_$controller_, _$timeout_, _studentData_, _toastr_) {
+      spyOn(_studentData_, 'getTec').and.returnValue([{}, {}, {}, {}, {}]);
       spyOn(_toastr_, 'info').and.callThrough();
 
       vm = _$controller_('MainController');

@@ -1,8 +1,81 @@
 
-<div class="row marketing">
-  <h1>DH2321</h1>
+<div class="row">
+  <h1>Group XX</h1>
   <canvas id="radar" class="chart chart-radar"
           chart-data="data" chart-labels="labels">
   </canvas>
+</div>
+<div class="row">
+    <form>
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for..." ng-model="search">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                  </span>
+            </div><!-- /input-group -->
+        </div>
+    </form>
+    <table class="table table-bordered table-striped">
+
+        <thead>
+        <tr>
+            <td>
+                Degree
+            </td>
+            <td>
+                About yourself
+            </td>
+            <td>
+                To learn
+            </td>
+            <td>
+                Visualization
+            </td>
+            <td>
+                Statistics
+            </td>
+            <td>
+                Math
+            </td>
+            <td>
+                Draw
+            </td>
+            <td>
+                Computers
+            </td>
+            <td>
+                Programming
+            </td>
+            <td>
+                CG
+            </td>
+            <td>
+                HCI
+            </td>
+            <td>
+                UX
+            </td>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="student in studentData | orderBy:sortType:sortReverse | filter:search">
+            <td>{{ student.degree }}</td>
+            <td>{{ student.aboutyourself }}</td>
+            <td>{{ student.tolearn }}</td>
+            <td>{{ student.visskills }}</td>
+            <td>{{ student.statsskills }}</td>
+            <td>{{ student.mathskills }}</td>
+            <td>{{ student.drawskills }}</td>
+            <td>{{ student.compskills }}</td>
+            <td>{{ student.progskills }}</td>
+            <td>{{ student.cgskills }}</td>
+            <td>{{ student.hciskills }}</td>
+            <td>{{ student.uxskills }}</td>
+        </tr>
+        </tbody>
+
+    </table>
 </div>
 

@@ -5,11 +5,11 @@ Error: File to import not found or unreadable: bootstrap-sass-official/assets/st
 1: $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 2: // bower:scss
 3: @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
-4: // endbower
-5: 
-6: .browsehappy {
-7:   margin: 0.2em 0;
-8:   background: #ccc;
+4: @import "font-awesome/scss/font-awesome.scss";
+5: // endbower
+6: 
+7: .browsehappy {
+8:   margin: 0.2em 0;
 
 Backtrace:
 main.scss:3
@@ -55,4 +55,4 @@ C:/Ruby22-x64/bin/scss:23:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: File to import not found or unreadable: bootstrap-sass-official/assets/stylesheets/_bootstrap.scss.\A         on line 3 of main.scss\A \A 1: $icon-font-path: \"../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/\";\A 2: // bower:scss\A 3: @import \"bootstrap-sass-official/assets/stylesheets/_bootstrap.scss\";\A 4: // endbower\A 5: \A 6: .browsehappy {\A 7:   margin: 0.2em 0;\A 8:   background: #ccc;"; }
+  content: "Error: File to import not found or unreadable: bootstrap-sass-official/assets/stylesheets/_bootstrap.scss.\A         on line 3 of main.scss\A \A 1: $icon-font-path: \"../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/\";\A 2: // bower:scss\A 3: @import \"bootstrap-sass-official/assets/stylesheets/_bootstrap.scss\";\A 4: @import \"font-awesome/scss/font-awesome.scss\";\A 5: // endbower\A 6: \A 7: .browsehappy {\A 8:   margin: 0.2em 0;"; }

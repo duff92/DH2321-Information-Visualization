@@ -2,9 +2,6 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/bower.json" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/app/components/asterPlot/asterPlot.directive.js" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/app/components/barChart/barChart.directive.js" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/app/components/d3Service/d3Service.service.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/app/components/studentData/studentData.service.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/app/components/studentData/studentData.service.spec.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/app/index.module.js" charset="UTF-8" />

@@ -1,16 +1,11 @@
-< class="container">
+<div class="container">
 
-  <!-- Navbar
   <div>
     <acme-navbar creation-date="main.creationDate"></acme-navbar>
-  </div>-->
+  </div>
 
   <div class="jumbotron text-center">
-    <h1>Hi</h1>
-    <p class="lead">
-      <img src="assets/images/yeoman.png" alt="I'm Yeoman"><br>
-      Always a pleasure scaffolding your apps.
-    </p>
+    <h1>DH2321 - Project 1</h1>
     <p class="animated infinite" ng-class="main.classAnimation">
       <button type="button" class="btn btn-lg btn-success" ng-click="main.showToastr()">Splendid Toastr</button>
     </p>
@@ -19,8 +14,10 @@
     </p>
   </div>
   <div class="row">
-    <div bar-chart bar-height="30" bar-padding="5"></div>
-  <div class="row">
+    <canvas id="pie" class="chart chart-pie"
+            chart-data="data" chart-labels="labels">
+    </canvas>
+    <div class="row">
     <div class="col-sm-6 col-md-4" ng-repeat="student in main.students | orderBy:'rank'">
       <div class="thumbnail">
         <div class="caption">

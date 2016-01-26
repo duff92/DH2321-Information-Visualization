@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('dh2321InformationVisualization')
+    .module('dh2321InformationVisualization', ["chart.js"])
     .controller('MainController', MainController);
 
   /** @ngInject */
@@ -13,11 +13,11 @@
     vm.classAnimation = '';
     vm.creationDate = 1453539129321;
     vm.showToastr = showToastr;
-    vm.d3Data = [
-      {name: "Greg", score: 98},
-      {name: "Ari", score: 96},
-      {name: 'Q', score: 75},
-      {name: "Loser", score: 48}
+    vm.labels =["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"];
+
+    vm.data = [
+      [65, 59, 90, 81, 56, 55, 40],
+      [28, 48, 40, 19, 96, 27, 100]
     ];
 
 

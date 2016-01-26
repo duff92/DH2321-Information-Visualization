@@ -2,66 +2,49 @@
  *  If you want to override some bootstrap variables, you have to change values here.
  *  The list of variables are listed here bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss
  */
-$navbar-inverse-link-color: #5AADBB;
-$icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
-
 /**
  *  Do not remove the comments below. It's the markers used by wiredep to inject
  *  sass dependencies when defined in the bower.json of your dependencies
  */
-// bower:scss
-// endbower
-
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
   color: #000;
-  padding: 0.2em 0;
-}
+  padding: 0.2em 0; }
 
 .thumbnail {
-  height: 200px;
-
-  img.pull-right {
-    width: 50px;
-  }
-}
+  height: 200px; }
+  .thumbnail img.pull-right {
+    width: 50px; }
 
 body {
-  font: 10px sans-serif;
-}
+  font: 10px sans-serif; }
 
 .axis path,
 .axis line {
   fill: none;
   stroke: #000;
-  shape-rendering: crispEdges;
-}
+  shape-rendering: crispEdges; }
 
 .bar {
-  fill: orange;
-}
+  fill: orange; }
 
 .solidArc:hover {
-  fill: orangered ;
-}
+  fill: orangered; }
 
 .solidArc {
   -moz-transition: all 0.3s;
   -o-transition: all 0.3s;
   -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-}
+  transition: all 0.3s; }
 
 .x.axis path {
-  display: none;
-}
+  display: none; }
 
 .aster-score {
   line-height: 1;
   font-weight: bold;
-  font-size: 500%;
-}
+  font-size: 500%; }
 
 .d3-tip {
   line-height: 1;
@@ -69,8 +52,7 @@ body {
   padding: 12px;
   background: rgba(0, 0, 0, 0.8);
   color: #fff;
-  border-radius: 2px;
-}
+  border-radius: 2px; }
 
 /* Creates a small triangle extender for the tooltip */
 .d3-tip:after {
@@ -82,19 +64,17 @@ body {
   color: rgba(0, 0, 0, 0.8);
   content: "\25BC";
   position: absolute;
-  text-align: center;
-}
+  text-align: center; }
 
 /* Style northward tooltips differently */
 .d3-tip.n:after {
   margin: -1px 0 0 0;
   top: 100%;
-  left: 0;
-}
+  left: 0; }
 
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically
  */
-// injector
-// endinjector
+
+/*# sourceMappingURL=index.css.map */

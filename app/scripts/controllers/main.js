@@ -15,6 +15,7 @@ angular.module('dh2321InformationVisualizationApp')
       $scope.sortType     = 'name'; // set the default sort type
       $scope.sortReverse  = false;  // set the default sort order
       $scope.search   = '';     // set the default search/filter term
+      $scope.selectedGroup = 0;
 
       $scope.studentData = [
         {
@@ -1075,16 +1076,38 @@ angular.module('dh2321InformationVisualizationApp')
         }
       ];
 
-      /*$scope.data = [];
-      for(var i = 0; i < 6; i++){
-        $scope.data[i] = [
-          studentData[0].visskills,
-          studentData[i].statsskills,
-          studentData[i].mathskills,
-          studentData[i].compskills,
-          studentData[i].progskills,
-          studentData[i].cgskills,
-          studentData[i].hciskills,
-          studentData[i].uxskills];
-      };*/
+      $scope.groupData = [
+        {
+          "numberOfStudents": 6,
+          "students": [0,1,2,3,4,5],
+          "averageScore": 0
+        }
+      ];
+
+      $scope.selectedGroupData = [];
+      var i = 0;
+      var sum = 0;
+      for(var student in $scope.groupData[$scope.selectedGroup].students){
+        $scope.selectedGroupData[i] = [
+          $scope.studentData[student].visskills,
+          $scope.studentData[student].statsskills,
+          $scope.studentData[student].mathskills,
+          $scope.studentData[student].compskills,
+          $scope.studentData[student].progskills,
+          $scope.studentData[student].cgskills,
+          $scope.studentData[student].hciskills,
+          $scope.studentData[student].uxskills
+        ];
+        sum = $scope.studentData[student].visskills +
+            $scope.studentData[student].statsskills +
+            $scope.studentData[student].mathskills +
+            $scope.studentData[student].compskills +
+            $scope.studentData[student].progskills +
+            $scope.studentData[student].cgskills +
+            $scope.studentData[student].hciskills +
+            $scope.studentData[student].uxskills;
+        i++;
+      }
+      $scope.groupData[$scope.selectedGroup].averageScore = sum / 6 / 8;
+      console.log($scope.groupData[$scope.selectedGroup].averageScore);
   }]);

@@ -1,9 +1,16 @@
 
+<h1>Group {{selectedGroup+1}}</h1>
 <div class="row">
-  <h1>Group XX</h1>
-  <canvas id="radar" class="chart chart-radar"
-          chart-data="data" chart-labels="labels">
-  </canvas>
+    <div class="col-lg-8">
+        <canvas id="radar" class="chart chart-radar"
+                chart-data="selectedGroupData" chart-labels="labels">
+        </canvas>
+    </div>
+    <div class="col-lg-4">
+        <h2>Average skills: </h2>
+        <h2>{{groupData[0].averageScore | number: 1}}</h2>
+    </div>
+
 </div>
 <div class="row">
     <form>

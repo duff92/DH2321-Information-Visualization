@@ -1,4 +1,8 @@
-
+<div class="btn-group" role="group" aria-label="...">
+  <span ng-repeat="group in groupData">
+    <button type="button" ng-click="$parent.selectedGroup = $index" class="btn btn-default">Group {{$index+1}} ({{group.numberOfStudents}})</button>
+  </span>
+</div>
 <h1>Group {{selectedGroup+1}}</h1>
 <div class="row">
     <div class="col-lg-8">
@@ -8,7 +12,7 @@
     </div>
     <div class="col-lg-4">
         <h2>Average skills: </h2>
-        <h2>{{groupData[0].averageScore | number: 1}}</h2>
+        <h2>{{groupData[selectedGroup].averageScore | number: 1}}</h2>
     </div>
 
 </div>
@@ -24,14 +28,18 @@
         </div>
     </form>
     <table class="table table-bordered table-striped">
-
         <thead>
         <tr>
+          <td>
+            <a href="#" ng-click="sortType = 'degree'; sortReverse = !sortReverse">
+              Sushi Roll
+              <span ng-show="sortType == 'degree' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'degree' && sortReverse" class="fa fa-caret-up"></span>
+            </a>
+          </td>
             <td>
-                Degree
-            </td>
-            <td>
-                About yourself
+               About yourself
+
             </td>
             <td>
                 To learn

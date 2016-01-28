@@ -1078,7 +1078,7 @@ angular.module('dh2321InformationVisualizationApp')
           'uxskills': 4
         }
       ];*/
-  
+
       $scope.groupData = [
         {
           numberOfStudents: 6,

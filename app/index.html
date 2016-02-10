@@ -10,11 +10,13 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+    <lin rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"/>
 
   </head>
   <body ng-app="dh2321InformationVisualizationApp">
@@ -42,8 +44,7 @@
 
             <ul class="nav navbar-nav">
               <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/about">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
+              <li><a ng-href="#/about">Analytic trails</a></li>
             </ul>
           </div>
         </div>
@@ -53,9 +54,7 @@
     <div ng-view=""></div>
 
     <div class="footer">
-      <div class="container">
-        <p>Created by Joakim Larsson</p>
-      </div>
+        <p class="text-center">Created by Joakim Larsson (joakim7(a)kth.se)</p>
     </div>
 
 
@@ -94,7 +93,6 @@
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/services/d3service.js"></script>
         <script src="scripts/directives/simplelinechart.js"></script>
-        <script src="scripts/directives/parallel-coordinates.js"></script>
         <!-- endbuild -->
 
 </body>

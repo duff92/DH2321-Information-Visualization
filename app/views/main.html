@@ -1,7 +1,18 @@
-<div class="jumbotron">
-  <h1>Which impact does gender equality have on life satisfaction?</h1>
-</div>
-
+<div class="container-fluid">
+  <div class="jumbotron">
+  This is a project in the course Information Visualization (DH2321) at KTH. The graph below illustrates a comparision between some countries regarding how subjective gradings of health and happiness (collected from <a href="http://www.worldvaluessurvey.org/WVSOnline.jsp">World Values Survey</a>) could be compared with data of spending on health products in each country (collected from <a href="http://www.gapminder.org/data/">Gapminder</a>).
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <span ng-repeat="series in initData">
+        <b ng-style="{color: series.color}">{{series.name}}</b>
+        <input type="checkbox" ng-model="checkboxes[series.name]" ng-init="checkboxes[series.name]=true" ng-change="onchange()"/>
+      </span>
+    </div>
+    <div class="col-sm-4 col-sm-offset-4">
+      <button class="btn btn-default" ng-click="api.refresh()">Reset brushes</button>
+    </div>
+  </div>
 <div class="row">
-  <nvd3 options="options" data="data"></nvd3>
+  <nvd3 options="options" data="data" api="api"></nvd3>
 </div>

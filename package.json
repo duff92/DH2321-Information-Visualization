@@ -38,5 +38,10 @@
   "scripts": {
     "test": "grunt test",
     "start": "grunt serve"
+  },
+  "dependencies": {
+    "express": "^4.13.4",
+    "gzippo": "^0.2.0",
+    "morgan": "^1.6.1"
   }
 }

@@ -17,7 +17,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'nvd3'
+    'nvd3',
+    'bootstrapLightbox'
   ])
   .config(function ($routeProvider) {
     $routeProvider

@@ -11,7 +11,6 @@
 
 import _ from 'lodash';
 import Thing from './thing.model';
-import video_140824_150219 from './json/video_140824_150219.json';
 
 
 function respondWithResult(res, statusCode) {
@@ -63,7 +62,6 @@ function handleError(res, statusCode) {
 
 // Gets a list of Things
 export function index(req, res) {
-  console.log(video_140824_150219);
   Thing.findAsync()
     .then(respondWithResult(res))
     .catch(handleError(res));

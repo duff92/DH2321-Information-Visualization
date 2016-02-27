@@ -10,7 +10,8 @@ angular.module('dh2321InformationVisualizationApp', [
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',
-  'validation.match'
+  'validation.match',
+  'd3'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider

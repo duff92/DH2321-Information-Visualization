@@ -1,0 +1,26 @@
+{
+  "name": "d3.parcoords.js",
+  "main": "d3.parcoords.js",
+  "ignore": [
+    ".git",
+    ".gitignore",
+    "Makefile",
+    "index.html",
+    "package.json",
+    "forkme.png",
+    "src",
+    "examples",
+    "test"
+  ],
+  "homepage": "https://github.com/syntagmatic/parallel-coordinates",
+  "_release": "bdcf7ca184",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "bdcf7ca184bc1383a91b4dacd53a447284c6e9fb"
+  },
+  "_source": "git://github.com/syntagmatic/parallel-coordinates.git",
+  "_target": "*",
+  "_originalSource": "d3.parcoords",
+  "_direct": true
+}

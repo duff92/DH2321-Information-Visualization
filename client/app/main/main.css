@@ -29,3 +29,9 @@
 .navbar-text {
   margin-left: 15px;
 }
+
+.brush .extent {
+  stroke: #333;
+  fill-opacity: .25;
+  shape-rendering: crispEdges;
+}

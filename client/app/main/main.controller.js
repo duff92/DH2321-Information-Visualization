@@ -66,7 +66,7 @@ class MainController {
         //console.log(i);
         var date = new Date(d.Date);
         if(date.valueOf()){
-          if(date.getFullYear() >= 2015){
+          if(date.getFullYear() >= 2016){
             //console.log(d.Date);
             $scope.pageData.push(
               {

@@ -5,15 +5,15 @@ angular.module('dh2321InformationVisualizationApp')
     return {
       restrict: 'EA',
       scope: {
-        data: "=",
-        label: "@",
-        onClick: "&"
+        data: '=',
+        label: '@',
+        onClick: '&'
       },
-      link: function (scope, elem, attrs) {
+      link: function (scope, elem) {
         d3Service.d3().then(function(d3){
           var svg = d3.select(elem[0])
-            .append("svg")
-            .attr("width", "100%");
+            .append('svg')
+            .attr('width', '100%');
 
           // on window resize, re-render d3 canvas
           window.onresize = function() {
@@ -27,14 +27,14 @@ angular.module('dh2321InformationVisualizationApp')
           );
 
           // watch for data changes and re-render
-          scope.$watch('data', function(newVals, oldVals) {
+          scope.$watch('data', function(newVals) {
             return scope.render(newVals);
           }, true);
 
           // define render function
           scope.render = function(data){
             // remove all previous items before render
-            svg.selectAll("*").remove();
+            svg.selectAll('*').remove();
 
             // setup variables
             var width, height, max;
@@ -50,31 +50,31 @@ angular.module('dh2321InformationVisualizationApp')
             svg.attr('height', height);
 
             //create the rectangles for the bar chart
-            svg.selectAll("rect")
+            svg.selectAll('rect')
               .data(data)
               .enter()
-              .append("rect")
-              .on("click", function(d, i){return scope.onClick({item: d});})
-              .attr("height", 30) // height of each bar
-              .attr("width", 0) // initial width of 0 for transition
-              .attr("x", 10) // half of the 20 side margin specified above
-              .attr("y", function(d, i){
+              .append('rect')
+              .on('click', function(d){return scope.onClick({item: d});})
+              .attr('height', 30) // height of each bar
+              .attr('width', 0) // initial width of 0 for transition
+              .attr('x', 10) // half of the 20 side margin specified above
+              .attr('y', function(d, i){
                 return i * 35;
               }) // height + margin between bars
               .transition()
               .duration(1000) // time of duration
-              .attr("width", function(d){
+              .attr('width', function(d){
                 return d.score/(max/width);
               }); // width based on scale
 
-            svg.selectAll("text")
+            svg.selectAll('text')
               .data(data)
               .enter()
-              .append("text")
-              .attr("fill", "#fff")
-              .attr("y", function(d, i){return i * 35 + 22;})
-              .attr("x", 15)
-              .text(function(d, i){return d[scope.label];});
+              .append('text')
+              .attr('fill', '#fff')
+              .attr('y', function(d, i){return i * 35 + 22;})
+              .attr('x', 15)
+              .text(function(d){return d[scope.label];});
 
           };
         });

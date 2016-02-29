@@ -3,10 +3,16 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-<!--      <ivis-graph data="main.d3Data" label="name" on-click="main.d3OnClick(item)"></ivis-graph>-->
-    <radar-chart data="main.d3Data2"></radar-chart>
+      <steam-graph data="pageData"></steam-graph>
     </div>
-
   </div>
-
+  <div class="row">
+    <div class="col-lg-6">
+<!--      <ivis-graph data="main.d3Data" label="name" on-click="main.d3OnClick(item)"></ivis-graph>-->
+      <radar-chart data="main.d3Data3" label="1"></radar-chart>
+    </div>
+    <div class="col-lg-6">
+      <radar-chart data="main.d3Data2" label="2"></radar-chart>
+    </div>
+  </div>
 </div>

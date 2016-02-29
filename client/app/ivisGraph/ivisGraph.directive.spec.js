@@ -15,6 +15,5 @@ describe('Directive: ivisGraph', function () {
   it('should make hidden element visible', inject(function ($compile) {
     element = angular.element('<ivis-graph></ivis-graph>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the ivisGraph directive');
   }));
 });

@@ -11,7 +11,8 @@ angular.module('dh2321InformationVisualizationApp', [
   'ui.router',
   'ui.bootstrap',
   'validation.match',
-  'd3'
+  'd3',
+  'nvd3'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider

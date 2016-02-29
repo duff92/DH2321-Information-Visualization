@@ -15,7 +15,10 @@
     "angular-socket-io": "~0.7.0",
     "angular-ui-router": "~0.2.15",
     "angular-validation-match": "~1.5.2",
-    "d3": "^3.5.16"
+    "d3": "^3.5.16",
+    "d3-tip": "^0.6.7",
+    "nvd3": "^1.8.2",
+    "angular-nvd3": "^1.0.5"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.0"

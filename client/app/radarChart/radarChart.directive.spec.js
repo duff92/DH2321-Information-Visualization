@@ -15,6 +15,5 @@ describe('Directive: radarChart', function () {
   it('should make hidden element visible', inject(function ($compile) {
     element = angular.element('<radar-chart></radar-chart>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the radarChart directive');
   }));
 });

@@ -16,15 +16,16 @@ angular.module('dh2321InformationVisualizationApp')
           var width = document.body.clientWidth - margin.left - margin.right;
           var height = 400 - margin.top - margin.bottom;
 
-          var colorrange = ["#045A8D", "#ffffff", "#B30000"];
-          var tooltip = d3.select("body")
+          var colorrange = ["#045A8D",  "#74A9CF", "#D0D1E6"];
+          var strokecolor = colorrange[0];
+          var tooltip = d3.select(elem[0])
             .append("div")
             .attr("class", "remove")
             .style("position", "absolute")
             .style("z-index", "20")
             .style("visibility", "hidden")
-            .style("top", "30px")
-            .style("left", "55px");
+            .style("top", "100px")
+            .style("left", "150px");
 /*
           var svg = d3.select(elem[0]).append('svg')
             .attr('width', width)
@@ -125,8 +126,8 @@ angular.module('dh2321InformationVisualizationApp')
             svg.append("g")
               .attr("class", "y axis")
               .call(yAxis.orient("left"));
-
-            /*svg.selectAll(".layer")
+            var datearray = [];
+            svg.selectAll(".layer")
               .attr("opacity", 1)
               .on("mouseover", function(d, i) {
                 svg.selectAll(".layer").transition()
@@ -135,23 +136,24 @@ angular.module('dh2321InformationVisualizationApp')
                     return j != i ? 0.6 : 1;
                   })})
               .on("mousemove", function(d, i) {
-                mousex = d3.mouse(this);
+                console.log(d);
+                var mousex = d3.mouse(this);
                 mousex = mousex[0];
                 var invertedx = x.invert(mousex);
                 invertedx = invertedx.getMonth() + invertedx.getDate();
                 var selected = (d.values);
                 for (var k = 0; k < selected.length; k++) {
-                  datearray[k] = selected[k].date
+                  datearray[k] = selected[k].date;
                   datearray[k] = datearray[k].getMonth() + datearray[k].getDate();
+                 // console.log(selected[k].date.getMonth());
                 }
 
-                mousedate = datearray.indexOf(invertedx);
-                pro = d.values[mousedate].value;
-
+                var mousedate = datearray.indexOf(invertedx);
+                var pro = d.values[mousedate].clicks.toString();
                 d3.select(this)
                   .classed("hover", true)
                   .attr("stroke", strokecolor)
-                  .attr("stroke-width", "0.5px"),
+                  .attr("stroke-width", "1px");
                   tooltip.html( "<p>" + d.key + "<br>" + pro + "</p>" ).style("visibility", "visible");
 
               })
@@ -162,30 +164,31 @@ angular.module('dh2321InformationVisualizationApp')
                   .attr("opacity", "1");
                 d3.select(this)
                   .classed("hover", false)
-                  .attr("stroke-width", "0px"), tooltip.html( "<p>" + d.key + "<br>" + pro + "</p>" ).style("visibility", "hidden");
-              });*/
+                  .attr("stroke-width", "0px");
+                tooltip.html( "<p>" + d.key + "<br>" + pro + "</p>" ).style("visibility", "hidden");
+              });
 
-            var vertical = d3.select(".chart")
+            var vertical = d3.select(elem[0])
               .append("div")
               .attr("class", "remove")
               .style("position", "absolute")
               .style("z-index", "19")
               .style("width", "1px")
-              .style("height", "380px")
-              .style("top", "10px")
+              .style("height", "400px")
+              .style("top", "50px")
               .style("bottom", "30px")
               .style("left", "0px")
-              .style("background", "#fff");
+              .style("background", "#000");
 
-            /*d3.select(".chart")
+            d3.select(elem[0])
               .on("mousemove", function(){
-                mousex = d3.mouse(this);
+                var mousex = d3.mouse(this);
                 mousex = mousex[0] + 5;
-                vertical.style("left", mousex + "px" )})
+                vertical.attr('fill', 'black').style("left", mousex + "px" )})
               .on("mouseover", function(){
-                mousex = d3.mouse(this);
+                var mousex = d3.mouse(this);
                 mousex = mousex[0] + 5;
-                vertical.style("left", mousex + "px")});*/
+                vertical.attr('fill', 'black').style("left", mousex + "px")});
 
            /* var dataToUse = [];
             var minDate = new Date();

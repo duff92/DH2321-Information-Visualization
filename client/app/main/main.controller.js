@@ -8,36 +8,110 @@ class MainController {
 
     this.$http = $http;
 
-    this.d3Data2 = [
-      [//iPhone
-        {axis:'Battery Life',value:0.22},
-        {axis:'Brand',value:0.28},
-        {axis:'Contract Cost',value:0.29},
-        {axis:'Design And Quality',value:0.17},
-        {axis:'Have Internet Connectivity',value:0.22},
-        {axis:'Large Screen',value:0.02},
-        {axis:'Price Of Device',value:0.21},
-        {axis:'To Be A Smartphone',value:0.50}
-      ],[//Samsung
-        {axis:'Battery Life',value:0.27},
-        {axis:'Brand',value:0.16},
-        {axis:'Contract Cost',value:0.35},
-        {axis:'Design And Quality',value:0.13},
-        {axis:'Have Internet Connectivity',value:0.20},
-        {axis:'Large Screen',value:0.13},
-        {axis:'Price Of Device',value:0.35},
-        {axis:'To Be A Smartphone',value:0.38}
-      ],[//Nokia Smartphone
-        {axis:'Battery Life',value:0.26},
-        {axis:'Brand',value:0.10},
-        {axis:'Contract Cost',value:0.30},
-        {axis:'Design And Quality',value:0.14},
-        {axis:'Have Internet Connectivity',value:0.22},
-        {axis:'Large Screen',value:0.04},
-        {axis:'Price Of Device',value:0.41},
-        {axis:'To Be A Smartphone',value:0.30}
-      ]
+    //Parallell coordinates
+    $scope.options = {
+      'chart': {
+        'type': 'parallelCoordinates',
+        'height': 450,
+        'margin': {
+          'top': 30,
+          'right': 20,
+          'bottom': 10,
+          'left': 20
+        },
+        color: d3.scale.category10().range(),
+        'dimensionNames': [
+          'Feeling of happiness',
+          'State of health (subjective)',
+          'Satisfaction with your life',
+          'Science and technology (health)',
+          'Total health spending (% of GDP)',
+          'Total health spending per person ($)'
+        ],
+        dispatch: {
+          stateChange: function(e){ console.log('stateChange'); },
+          brushstart: function(e) {console.log('brush start');},
+          brush: function(e) {console.log('brush');},
+          brushEnd: function(e) {console.log('brush end');}
+        }
+      }
+    };
+    $scope.initData = [
+      {
+        'name': 'Chile',
+        'color': '#1f77b4',
+        'Feeling of happiness': '3.08',
+        'State of health (subjective)': '2.88',
+        'Satisfaction with your life': '7.27',
+        'Science and technology (health)': '7.01',
+        'Total health spending (% of GDP)': '8.0',
+        'Total health spending per person ($)': '947.22'
+      },
+      {
+        'name': 'China',
+        'color': '#ff7f0e',
+        'Feeling of happiness': '3.00',
+        'State of health (subjective)': '2.87',
+        'Satisfaction with your life': '6.85',
+        'Science and technology (health)': '8.33',
+        'Total health spending (% of GDP)': '5.1',
+        'Total health spending per person ($)': '220.88'
+      },
+      {
+        'name': 'South Korea',
+        'color': '#2ca02c',
+        'Feeling of happiness': '3.05',
+        'State of health (subjective)': '2.95',
+        'Satisfaction with your life': '6.51',
+        'Science and technology (health)': '7.42',
+        'Total health spending (% of GDP)': '6.9',
+        'Total health spending per person ($)': '1438.78'
+      },
+      {
+        'name': 'Rwanda',
+        'color': '#9467bd',
+        'Feeling of happiness': '3.3',
+        'State of health (subjective)': '3.13',
+        'Satisfaction with your life': '6.47',
+        'Science and technology (health)': '8.72',
+        'Total health spending (% of GDP)': '10.5',
+        'Total health spending per person ($)': '55.51'
+      },
+      {
+        'name': 'Sweden',
+        'color': '#8c564b',
+        'Feeling of happiness': '3.35',
+        'State of health (subjective)': '3.03',
+        'Satisfaction with your life': '7.55',
+        'Science and technology (health)': '7.54',
+        'Total health spending (% of GDP)': '9.63',
+        'Total health spending per person ($)': '4710.43'
+      },
+      {
+        'name': 'United States',
+        'color': '#e377c2',
+        'Feeling of happiness': '3.25',
+        'State of health (subjective)': '3.05',
+        'Satisfaction with your life': '7.37',
+        'Science and technology (health)': '7.19',
+        'Total health spending (% of GDP)': '17.89',
+        'Total health spending per person ($)': '8361.73'
+      }
     ];
+    $scope.data = angular.copy($scope.initData);
+
+    $scope.checkboxes = {};
+
+    $scope.onchange = function(){
+      $scope.data = [];
+      angular.forEach($scope.initData, function(value){
+        if ($scope.checkboxes[value.name]) {
+          $scope.data.push(value);
+        }
+      });
+    };
+
+    //Steam graph
     this.d3Data3 = [];
     let parent = this;
     $http.get('/api/things/video').success(function(data) {
@@ -66,52 +140,43 @@ class MainController {
         //console.log(i);
         var date = new Date(d.Date);
         if(date.valueOf()){
-          if(date.getFullYear() >= 2015 ){
+          //if(date.getFullYear() >= 2015 ){
             //console.log(d.Date);
             $scope.pageData.push(
               {
                 'index': i,
                 'date': d.Date,
-                'consumpType': 'photo',
+                'consumpType': 'Photo views',
                 'clicks': parseInt(d['Daily Page consumptions by type - photo view']) || 0
               },
               {
                 'index': i,
                 'date': d.Date,
-                'consumpType': 'link',
+                'consumpType': 'Link clicks',
                 'clicks': parseInt(d['Daily Page consumptions by type - link clicks']) || 0
               },
               {
                 'index': i,
                 'date': d.Date,
-                'consumpType': 'other',
+                'consumpType': 'Other clicks',
                 'clicks': parseInt(d['Daily Page consumptions by type - other clicks']) || 0
+              },
+              {
+                'index': i,
+                'date': d.Date,
+                'consumpType': 'Unique video views',
+                'clicks': parseInt(d['Daily Total Unique Video Views']) || 0
               }
             );
-          }
+          //}
         }
           else{
             console.log(d.Date, 'error');
           }
       });
     });
-
-    $scope.$on('$destroy', function() {
-      socket.unsyncUpdates('thing');
-    });
-
   }
 
-  addThing() {
-    if (this.newThing) {
-      this.$http.post('/api/things', { name: this.newThing });
-      this.newThing = '';
-    }
-  }
-
-  deleteThing(thing) {
-    this.$http.delete('/api/things/' + thing._id);
-  }
 }
 
 angular.module('dh2321InformationVisualizationApp')

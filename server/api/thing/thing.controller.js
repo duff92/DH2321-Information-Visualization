@@ -144,7 +144,8 @@ function respondRelevantData(type, res, statusCode){
           '28 Days Page consumptions': d['28 Days Page consumptions'],
           'Daily Page consumptions by type - link clicks': d['Daily Page consumptions by type - link clicks'],
           'Daily Page consumptions by type - other clicks': d['Daily Page consumptions by type - other clicks'],
-          'Daily Page consumptions by type - photo view': d['Daily Page consumptions by type - photo view']
+          'Daily Page consumptions by type - photo view': d['Daily Page consumptions by type - photo view'],
+          'Daily Total Unique Video Views': d['Daily Total Unique Video Views']
         });
       });
     });

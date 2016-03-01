@@ -18,8 +18,8 @@ angular.module('dh2321InformationVisualizationApp')
               height = 500 - margin.top - margin.bottom,
               height2 = 500 - margin2.top - margin2.bottom;
 
-          var colorrange = ['#22315c',  '#84e2e5', '#c9c9c9'];
-          var strokecolor = colorrange[0];
+          var colorrange = ['#1b85b8', '#5a5255', '#559e83', '#ae5a41'];
+          var strokecolor = '#000';
 
 
           var svg = d3.select(elem[0]).append('svg')
@@ -214,9 +214,9 @@ angular.module('dh2321InformationVisualizationApp')
                   focus.selectAll('.area').transition()
                     .duration(250)
                     .attr('opacity', function(d, j) {
-                      return j != i ? 0.6 : 1;
-                    })})
-                .on('mousemove', function(d, i) {
+                      return j !== i ? 0.6 : 1;
+                    });})
+                .on('mousemove', function(d) {
                   console.log(d);
                   var mousex = d3.mouse(this);
                   mousex = mousex[0];
@@ -239,7 +239,7 @@ angular.module('dh2321InformationVisualizationApp')
                   tooltip.html( '<p class="lead">' + d.key + '<br>' + pro + '</p>' ).style('visibility', 'visible');
 
                 })
-                .on('mouseout', function(d, i) {
+                .on('mouseout', function(d) {
                   focus.selectAll('.area')
                     .transition()
                     .duration(250)

@@ -12,13 +12,13 @@ angular.module('dh2321InformationVisualizationApp')
 
           var format = d3.time.format('%m/%d/%Y');
 
-          var margin = {top: 10, right:100, bottom: 120, left: 50},
-              margin2 = {top: 410, right: 100, bottom: 30, left: 50},
+          var margin = {top: 10, right:80, bottom: 120, left: 30},
+              margin2 = {top: 410, right: 80, bottom: 30, left: 30},
               width = document.body.clientWidth - margin.left - margin.right,
               height = 500 - margin.top - margin.bottom,
               height2 = 500 - margin2.top - margin2.bottom;
 
-          var colorrange = ['#1b85b8', '#5a5255', '#559e83', '#ae5a41'];
+          var colorrange = ['#393B40','#F2BE5C', '#F26A4B', '#97BF85'];
           var strokecolor = '#000';
 
 
@@ -35,7 +35,7 @@ angular.module('dh2321InformationVisualizationApp')
             .style('z-index', '20')
             .style('visibility', 'hidden')
             .style('top', '200px')
-            .style('left', '150px');
+            .style('left', '100px');
 
           // on window resize, re-render d3 canvas
           window.onresize = function() {
@@ -44,6 +44,7 @@ angular.module('dh2321InformationVisualizationApp')
           scope.$watch(function(){
               return angular.element(window)[0].innerWidth;
             }, function(){
+              width = document.body.clientWidth - margin.left - margin.right;
               return scope.render(scope.data);
             }
           );
@@ -139,6 +140,7 @@ angular.module('dh2321InformationVisualizationApp')
               .attr('class', 'y axis')
               .call(yAxis.orient('left'));
 
+            //Context of graph below
             context.selectAll('.area')
               .data(layers)
               .enter().append('path')
@@ -158,23 +160,7 @@ angular.module('dh2321InformationVisualizationApp')
               .attr('y', -6)
               .attr('height', height2 + 7);
 
-            /*svg.selectAll('.layer')
-              .data(layers)
-              .enter().append('path')
-              .attr('class', 'layer')
-              .attr('d', function(d) { return area(d.values); })
-              .style('fill', function(d, i) { return z(i); });*/
-
-
-            /*svg.append('g')
-              .attr('class', 'x axis')
-              .attr('transform', 'translate(0,' + height + ')')
-              .call(xAxis);
-
-            svg.append('g')
-              .attr('class', 'y axis')
-              .call(yAxis.orient('left'));*/
-
+            //Activeted when data is being filtered using the brush
             function brushed() {
               x.domain(brush.empty() ? x2.domain() : brush.extent());
               var dataFiltered = data.filter(function(d) {
@@ -182,6 +168,7 @@ angular.module('dh2321InformationVisualizationApp')
                   return d;
                 }
               });
+
               dataFiltered.forEach(function(d){
                 // console.log(d.date);
                 if(typeof(d.date) !== 'object'){
@@ -214,7 +201,7 @@ angular.module('dh2321InformationVisualizationApp')
                   focus.selectAll('.area').transition()
                     .duration(250)
                     .attr('opacity', function(d, j) {
-                      return j !== i ? 0.6 : 1;
+                      return j !== i ? 0.3 : 1;
                     });})
                 .on('mousemove', function(d) {
                   console.log(d);

@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('dh2321InformationVisualizationApp')
-  .controller('AnalyzeCtrl', function ($scope, $http, $window) {
+  .controller('AnalyzeCtrl', function ($scope, $http) {
     //Parallell coordinates
     $scope.selectedData = [];
-    $scope.api;
+
     $scope.options = {
       'chart': {
         'type': 'parallelCoordinates',
@@ -16,17 +16,19 @@ angular.module('dh2321InformationVisualizationApp')
           'bottom': 10,
           'left': 20
         },
-        color: d3.scale.category10().range(),
         'dimensionNames': [
           'Lifetime Post Total Reach',
           'Lifetime Post Total Impressions',
           'Lifetime Post Consumptions',
-          'Lifetime Post reach by people who like your Page'
+          'Lifetime Post reach by people who like your Page',
+          'Lifetime Post Stories by action type - comment',
+          'Lifetime Post Stories by action type - like',
+          'Lifetime Post Stories by action type - share'
         ],
         dispatch: {
-          stateChange: function(e){ console.log('stateChange'); },
-          brushstart: function(e) {console.log('brush start');},
-          brush: function(e) {console.log('brush');},
+          stateChange: function(){ console.log('stateChange'); },
+          brushstart: function() {console.log('brush start');},
+          brush: function() {console.log('brush');},
           brushEnd: function(e) {
             $scope.selectedData = [];
             e.forEach(function(d){
@@ -105,24 +107,30 @@ angular.module('dh2321InformationVisualizationApp')
         $scope.options.chart.width = document.body.clientWidth;
         setTimeout(function(){
           $scope.api.updateWithOptions($scope.options);
-        })
+        });
       });
     });
     $http.get('/api/things/posts').success(function(data){
       $scope.postData = [];
       data.forEach(function(d){
+        var date = new Date(d.Posted);
+        if(date.valueOf()){
           $scope.postData.push(
-            {
-              'Type': d.Type,
-              'Permalink': d.Permalink,
-              'Post Message': d['Post Message'],
-              'Posted': d.Posted,
-              'Lifetime Post Total Reach': d['Lifetime Post Total Reach'],
-              'Lifetime Post Total Impressions': d['Lifetime Post Total Impressions'],
-              'Lifetime Post Consumptions': d['Lifetime Post Consumptions'],
-              'Lifetime Post reach by people who like your Page': d['Lifetime Post reach by people who like your Page']
-            }
-          );
+              {
+                'Type': d.Type,
+                'Permalink': d.Permalink,
+                'Post Message': d['Post Message'],
+                'Posted': d.Posted,
+                'Lifetime Post Total Reach': d['Lifetime Post Total Reach'] || 0,
+                'Lifetime Post Total Impressions': d['Lifetime Post Total Impressions'] || 0,
+                'Lifetime Post Consumptions': d['Lifetime Post Consumptions'] || 0,
+                'Lifetime Post reach by people who like your Page': d['Lifetime Post reach by people who like your Page'] || 0,
+                'Lifetime Post Stories by action type - comment': d['Lifetime Post Stories by action type - comment'] || 0,
+                'Lifetime Post Stories by action type - like': d['Lifetime Post Stories by action type - like'] || 0,
+                'Lifetime Post Stories by action type - share': d['Lifetime Post Stories by action type - share'] || 0
+              }
+            );
+        }
       });
       $scope.data = angular.copy($scope.postData);
     });

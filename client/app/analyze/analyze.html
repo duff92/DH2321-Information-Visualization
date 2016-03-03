@@ -1,3 +1,4 @@
+<div class="whiteBackground">
 <div class="container">
   <h1>Comparences of post data of VIC Studio</h1>
   <p>Filter the data by brushing the axis in the graph below.</p>
@@ -5,31 +6,43 @@
 <div class="row">
   <nvd3 options="options" data="data" api="api"></nvd3>
 </div>
-<div class="table-responsive" ng-hide="selectedData.length == 0">
-  <table class="table">
-    <thead>
-    <tr>
-      <th>#</th>
-      <th>Type</th>
-      <th>Posted</th>
-      <th>Permalink</th>
-      <th>Lifetime Post Total Reach</th>
-      <th>Lifetime Post Total Impressions</th>
-      <th>Lifetime Post Consumptions</th>
-      <th>Lifetime Post reach by people who like your Page</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="item in selectedData">
-      <td>{{$index+1}}</td>
-      <td>{{item.Type}}</td>
-      <td>{{item.Posted | limitTo : 10}}</td>
-      <td><a ng-href="{{item.Permalink}}">Link to Facebook</a></td>
-      <td>{{item['Lifetime Post Total Reach']}}</td>
-      <td>{{item['Lifetime Post Total Impressions']}}</td>
-      <td>{{item['Lifetime Post Consumptions']}}</td>
-      <td>{{item['Lifetime Post reach by people who like your Page']}}</td>
-    </tr>
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="col-lg-offset-1 col-lg-10">
+      <div class="table-responsive" ng-hide="selectedData.length == 0">
+        <table class="table">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Type</th>
+            <th>Posted</th>
+            <th>Permalink</th>
+            <th>Lifetime Post Total Reach</th>
+            <th>Lifetime Post Total Impressions</th>
+            <th>Lifetime Post Consumptions</th>
+            <th>Lifetime Post reach by people who like your Page</th>
+            <th>Lifetime Post Stories by action type - comment</th>
+            <th>Lifetime Post Stories by action type - like</th>
+            <th>Lifetime Post Stories by action type - share</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="item in selectedData">
+            <td>{{$index+1}}</td>
+            <td>{{item.Type}}</td>
+            <td>{{item.Posted | limitTo : 10}}</td>
+            <td><a ng-href="{{item.Permalink}}">Link to Facebook</a></td>
+            <td>{{item['Lifetime Post Total Reach']}}</td>
+            <td>{{item['Lifetime Post Total Impressions']}}</td>
+            <td>{{item['Lifetime Post Consumptions']}}</td>
+            <td>{{item['Lifetime Post reach by people who like your Page']}}</td>
+            <td>{{item['Lifetime Post Stories by action type - comment']}}</td>
+            <td>{{item['Lifetime Post Stories by action type - like']}}</td>
+            <td>{{item['Lifetime Post Stories by action type - share']}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
 </div>

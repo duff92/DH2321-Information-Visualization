@@ -18,7 +18,9 @@ angular.module('dh2321InformationVisualizationApp')
               height = 500 - margin.top - margin.bottom,
               height2 = 500 - margin2.top - margin2.bottom;
 
-          var colorrange = ['#393B40','#F2BE5C', '#F26A4B', '#97BF85'];
+          //var colorrange = ['#393B40','#F2BE5C', '#F26A4B', '#97BF85'];
+          var colorrange = ['#E34D1D','#fd8d3c', '#fecc5c', '#ffffb2'];
+
           var strokecolor = '#000';
 
 
@@ -34,7 +36,7 @@ angular.module('dh2321InformationVisualizationApp')
             .style('position', 'absolute')
             .style('z-index', '20')
             .style('visibility', 'hidden')
-            .style('top', '200px')
+            .style('top', '240px')
             .style('left', '100px');
 
           // on window resize, re-render d3 canvas
@@ -71,6 +73,7 @@ angular.module('dh2321InformationVisualizationApp')
             var xAxis = d3.svg.axis().scale(x).orient('bottom'),
                 xAxis2 = d3.svg.axis().scale(x2).orient('bottom'),
                 yAxis = d3.svg.axis().scale(y);
+
 
             var brush = d3.svg.brush().x(x2).on('brush', brushed);
 
@@ -117,7 +120,6 @@ angular.module('dh2321InformationVisualizationApp')
               }
             });
             var layers = stack(nest.entries(data));
-            console.log(layers);
             x.domain(d3.extent(data, function(d) { return d.date; }));
             y.domain([0, d3.max(data, function(d) { return d.y0 + d.y; })]);
             x2.domain(x.domain());
@@ -133,11 +135,13 @@ angular.module('dh2321InformationVisualizationApp')
 
             focus.append('g')
               .attr('class', 'x axis')
+              .style('fill', 'white')
               .attr('transform', 'translate(0,' + height + ')')
               .call(xAxis);
 
             focus.append('g')
               .attr('class', 'y axis')
+              .style('fill', 'white')
               .call(yAxis.orient('left'));
 
             //Context of graph below
@@ -150,6 +154,7 @@ angular.module('dh2321InformationVisualizationApp')
 
             context.append('g')
               .attr('class', 'x axis')
+              .style('fill', 'white')
               .attr('transform', 'translate(0,' + height2 + ')')
               .call(xAxis2);
 
@@ -178,7 +183,6 @@ angular.module('dh2321InformationVisualizationApp')
               });
               var layers2 = stack(nest.entries(dataFiltered));
 
-              console.log(dataFiltered);
               x.domain(d3.extent(dataFiltered, function(d) { return d.date; }));
               y.domain([0, d3.max(dataFiltered, function(d) { return d.y0 + d.y; })]);
 
@@ -201,10 +205,9 @@ angular.module('dh2321InformationVisualizationApp')
                   focus.selectAll('.area').transition()
                     .duration(250)
                     .attr('opacity', function(d, j) {
-                      return j !== i ? 0.3 : 1;
+                      return j !== i ? 0.25 : 1;
                     });})
                 .on('mousemove', function(d) {
-                  console.log(d);
                   var mousex = d3.mouse(this);
                   mousex = mousex[0];
                   var invertedx = x.invert(mousex);
@@ -238,67 +241,6 @@ angular.module('dh2321InformationVisualizationApp')
                 });
 
             }
-           /* d3.select('.remove').remove();
-            var vertical = d3.select(elem[0])
-              .append('div')
-              .attr('class', 'remove')
-              .style('position', 'absolute')
-              .style('z-index', '19')
-              .style('width', '1px')
-              .style('height', '380px')
-              .style('top', '185px')
-              .style('bottom', '0px')
-              .style('left', '100px')
-              .style('background', '#000');
-
-            d3.select(elem[0])
-              .on('mousemove', function(){
-                var mousex = d3.mouse(this);
-                mousex = mousex[0] + 5;
-                vertical.attr('fill', 'black').style('left', mousex + 'px' )})
-              .on('mouseover', function(){
-                var mousex = d3.mouse(this);
-                mousex = mousex[0] + 5;
-                vertical.attr('fill', 'black').style('left', mousex + 'px')});*/
-
-           /* var dataToUse = [];
-            var minDate = new Date();
-            var maxDate = new Date(0);
-            console.log(data.length);
-            data.forEach(function(d,i){
-              dataToUse.push(d);
-              if(typeof(d.date) === 'object'){
-                dataToUse[i].date = d.date;
-              }
-              else {
-                dataToUse[i].date = d3.time.format('%m/%d/%Y').parse(d.date);
-              }
-              dataToUse[i].y = +d.clicks;
-              dataToUse[i].x = +d.index;
-              if(d.date.getTime() < minDate.getTime()){
-                minDate = d.date;
-              }
-              if(d.date.getTime() > maxDate.getTime()){
-                maxDate = d.date
-              }
-
-              //console.log(typeof(dataToUse[i].date));
-            });
-            //console.log(dataToUse);
-
-              stack = d3.layout.stack().offset('wiggle').values(function(d){ return d.values;}),
-              layers0 = stack(nest.entries(dataToUse)),
-              layers1 = stack(nest.entries(dataToUse));
-
-            var m = layers0[0].values.length;
-
-            var yDomain = d3.max(layers0.concat(layers1), function(layer) {
-              return d3.max(layer.values,
-                function(d) {
-                  //console.log(d);
-                  return d.y0 + d.y;
-                });
-            });*/
           };
 
 

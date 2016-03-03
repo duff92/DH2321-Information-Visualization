@@ -30,8 +30,27 @@
   margin-left: 15px;
 }
 
+.darkBackground h1 {
+  color: white;
+}
+
+.darkBackground p {
+  color: #ffffff;
+}
+body {
+  background: black;
+}
+
+p.lead{
+  stroke: #aaa;
+  fill: #aaa;
+  fill-opacity: .25;
+  shape-rendering: crispEdges;
+}
+
 .brush .extent {
-  stroke: #333;
+  stroke: #aaa;
+  fill: #aaa;
   fill-opacity: .25;
   shape-rendering: crispEdges;
 }

@@ -113,7 +113,10 @@ function respondRelevantData(type, res, statusCode){
           'Lifetime Post Total Impressions': d['Lifetime Post Total Impressions'],
           'Lifetime Post Consumptions': d['Lifetime Post Consumptions'],
           'Lifetime Post reach by people who like your Page': d['Lifetime Post reach by people who like your Page'],
-          'Lifetime People who have liked your Page and engaged with your post': d['Lifetime People who have liked your Page and engaged with your post']
+          'Lifetime People who have liked your Page and engaged with your post': d['Lifetime People who have liked your Page and engaged with your post'],
+          'Lifetime Post Stories by action type - comment': d['Lifetime Post Stories by action type - comment'],
+          'Lifetime Post Stories by action type - like': d['Lifetime Post Stories by action type - like'],
+          'Lifetime Post Stories by action type - share': d['Lifetime Post Stories by action type - share']
         });
       });
     });

@@ -32,12 +32,13 @@ angular.module('dh2321InformationVisualizationApp')
 
           var tooltip = d3.select(elem[0])
             .append('div')
-            .attr('class', 'remove')
-            .style('position', 'absolute')
+            .attr('class', 'tooltip')
+            .style('opacity', 0);
+            /*.style('position', 'absolute')
             .style('z-index', '20')
             .style('visibility', 'hidden')
             .style('top', '240px')
-            .style('left', '100px');
+            .style('left', '100px');*/
 
           // on window resize, re-render d3 canvas
           window.onresize = function() {
@@ -198,7 +199,7 @@ angular.module('dh2321InformationVisualizationApp')
               focus.select('.y.axis').call(yAxis.orient('left'));
 
               var datearray = [];
-              var pro;
+              var clicks, time;
               focus.selectAll('.area')
                 .attr('opacity', 1)
                 .on('mouseover', function(d, i) {
@@ -220,16 +221,26 @@ angular.module('dh2321InformationVisualizationApp')
                   }
 
                   var mousedate = datearray.indexOf(invertedx);
-                  pro = d.values[mousedate].clicks.toString();
+                  var formatTime = d3.time.format('%e %B');
+
+                  clicks = d.values[mousedate].clicks.toString();
+                  time = formatTime(d.values[mousedate].date);
 
                   d3.select(this)
                     .classed('hover', true)
                     .attr('stroke', strokecolor)
                     .attr('stroke-width', '1px');
-                  tooltip.html( '<p class="lead">' + d.key + '<br>' + pro + '</p>' ).style('visibility', 'visible');
+
+                  var positionSteamGraph = $(elem[0]).position();
+
+                  tooltip.transition().duration(100).style('opacity', 0.75);
+                  tooltip.html('<p>' + '<b>Type:</b>' + d.key + '<br>'  + '<b>Value: </b>' + clicks + '<br>' + '<b>Date: </b>' + time + '</p>')
+                    .style('left', (positionSteamGraph.left + margin.left + 40) + 'px')
+                    .style('top', (positionSteamGraph.top - height - height2 - 35) + 'px');
+
 
                 })
-                .on('mouseout', function(d) {
+                .on('mouseout', function() {
                   focus.selectAll('.area')
                     .transition()
                     .duration(250)
@@ -237,8 +248,33 @@ angular.module('dh2321InformationVisualizationApp')
                   d3.select(this)
                     .classed('hover', false)
                     .attr('stroke-width', '0px');
-                  tooltip.html( '<p>' + d.key + '<br>' + pro + '</p>' ).style('visibility', 'hidden');
+
+                  tooltip.transition().duration(100).style('opacity', 0);
                 });
+
+              d3.select('.vertical').remove();
+              var vertical = d3.select(elem[0])
+                .append('div')
+                .attr('class', 'vertical')
+                .style('position', 'absolute')
+                .style('z-index', '19')
+                .style('width', '1px')
+                .style('height', height + 'px')
+                .style('top', (margin2.top - margin2.bottom - margin.bottom - 31) + 'px')
+                .style('left', '0px')
+                .style('background', '#666');
+
+              d3.select(elem[0])
+                .on('mousemove', function(){
+                  var mousex = d3.mouse(this);
+                  mousex = mousex[0] + 3;
+                  vertical.attr('fill', 'white').style('left', (mousex) + 'px' );})
+                .on('mouseover', function(){
+                  var mousex = d3.mouse(this);
+                  mousex = mousex[0] + 3;
+                  vertical.attr('fill', 'white').style('left',(mousex) + 'px');
+                });
+
 
             }
           };
